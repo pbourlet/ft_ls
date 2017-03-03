@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/02 20:21:31 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/03 13:16:05 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -16,6 +16,7 @@ LIB	=	-L. libft/libft.a
 
 LS	=	ft_ls.c \
 		ft_flenmax.c \
+		ft_testflags.c \
 
 OBJ	=	$(LS:.c=.o)
 

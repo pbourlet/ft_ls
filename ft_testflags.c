@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_testflags.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/03 13:23:00 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/03 13:36:33 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
+#include "includes/ft_ls.h"
 
-# include <sys/ioctl.h>
+int	ft_testflags(char *s)
+{
+	int flag;
 
-# include <dirent.h>
-# include <sys/xattr.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <pwd.h>
-# include <uuid/uuid.h>
-# include <grp.h>
-# include "../libft/includes/libft.h"
-
-int		ft_ls(int flag, char *path);
-int		ft_flenmax(char *path);
-
-int		ft_testflags(char *s);
-
-#endif
+	flag = 0;
+	if (!s)
+		return (0);
+	if (s[0] == '-')
+	{
+		if (ft_strstr(s, "1"))
+			flag = 10000000;
+		if (ft_strstr(s, "R"))
+			flag = flag + 1000000;
+	}
+	return (flag);
+}
