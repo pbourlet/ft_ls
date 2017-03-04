@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/03 13:23:00 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/03 19:35:46 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # include "../libft/includes/libft.h"
 
 int		ft_ls(int flag, char *path);
-int		ft_flenmax(char *path);
-
+int		ft_flenmax(char *path, int la);
 int		ft_testflags(char *s);
+int		ft_ls1(int flag, int len, char *flname);
+int		ft_la(int flag, int len, char *flname);
+int		ft_ls0(int flag, int len, char *flname);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/03 13:24:42 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/04 03:34:43 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ int		ft_ls(int flag, char *path)
 {
 	struct	dirent *entry;
 	DIR		*dp;
-	struct	stat statis;
 	int		len;
-	struct	winsize w;
-	int		cpt;
 
-	ioctl(0, TIOCGWINSZ, &w);
-	cpt = w.ws_col;
-//	len = ft_flenmax(path) + 1; windows = strlen + 2
+	len = ft_flenmax(path, (flag == 100 ? 1 : 0)) + 1;
 	dp = opendir(path);
 	if (dp == NULL)
 	{
 		perror("opendir");
 		return (-1);
 	}
-	while((entry = readdir(dp)) && !flag)
+	while((entry = readdir(dp)))
 	{
-		if (entry->d_name[0] != '.')
+		if (flag == 0)
+			ft_ls0(flag, len, entry->d_name);
+		else if (flag == 1)
+			ft_ls1(flag, len, entry->d_name);
+		else if (flag == 100)
+			ft_la(flag, len, entry->d_name);
+/*		if (entry->d_name[0] != '.')
 		{
 			len = ft_strlen(entry->d_name) + 2; // seulement pour windows
 			if (cpt - len < 0 && !path)
@@ -50,8 +51,8 @@ int		ft_ls(int flag, char *path)
 				printf("%-*s", len, entry->d_name);
 			cpt -= len;
 		}
-	}
-	printf("\n");
+*/	}
+	(flag == 1 ? 0 : printf("\n"));
 	closedir(dp);
 	return (0);
 }

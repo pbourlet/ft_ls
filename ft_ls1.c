@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_testflags.c                                     :+:      :+:    :+:   */
+/*   ft_ls1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/03 19:16:39 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/03 18:41:07 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/03 20:45:00 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int	ft_testflags(char *s)
+int	ft_ls1(int flag, int len, char *flname)
 {
-	int flag;
+	struct	stat	statis;
 
-	flag = 0;
-	if (!s)
-		return (0);
-	if (s[0] == '-')
+	if (flag == 1 && flname[0] != '.')
 	{
-		if (ft_strstr(s, "1"))
-			flag = flag + 1;
-		if (ft_strstr(s, "R"))
-			flag = flag + 10;
-		if (ft_strstr(s, "a"))
-			flag = 100;
-		if (ft_strstr(s, "r"))
-			flag = 1000;
-		if (ft_strstr(s, "t"))
-			flag = 10000;
+		stat(flname, &statis);
+		if (S_ISREG(statis.st_mode) == 0)
+			printf("\033[36;01m%-*s\033[0m", len, flname);
+		else if (S_IEXEC & statis.st_mode)
+			printf("\033[31m%-*s\033[0m", len, flname);
+		else
+			printf("%-*s", len, flname);
+		printf("\n");
 	}
-	return (flag);
+	return (1);
 }

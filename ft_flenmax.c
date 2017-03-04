@@ -6,13 +6,13 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:47:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/02 18:48:12 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/03 19:22:01 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		ft_flenmax(char *path)
+int		ft_flenmax(char *path, int la)
 {
 	struct	dirent *entry;
 	DIR		*dp;
@@ -28,7 +28,7 @@ int		ft_flenmax(char *path)
 	}
 	while ((entry = readdir(dp)))
 	{
-		if (entry->d_name[0] != '.')
+		if (entry->d_name[0] != '.' || la)
 		{
 			lentmp = ft_strlen(entry->d_name);
 			(lentmp > len ? len = lentmp : 0);
