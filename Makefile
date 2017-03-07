@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/03 19:35:54 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/07 21:13:32 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -20,6 +20,8 @@ LS	=	ft_ls.c \
 		ft_ls1.c \
 		ft_la.c \
 		ft_ls0.c \
+		ft_lr.c \
+		ft_lstck.c \
 
 OBJ	=	$(LS:.c=.o)
 

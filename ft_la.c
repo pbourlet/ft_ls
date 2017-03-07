@@ -1,27 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_la.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/07 16:30:18 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/07 16:36:59 by pbourlet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_ls.h"
 
-int	ft_la(int flag, int len, char *flname)
+int		ft_la(int flag, DIR *dp, int len)
 {
-	struct	stat	statis;
 	struct	winsize	w;
-	int		cpt;
+	struct	dirent	*entry;
+	int				cpt;
 
 	ioctl(0, TIOCGWINSZ, &w);
 	cpt = w.ws_col;
-	if (flag == 100)
+	flag = flag + 1;
+	while ((entry = readdir(dp)))
 	{
 		if (cpt - len < 0)
 		{
-			printf("\n");
+			ft_printf("\n");
 			cpt = w.ws_col;
 		}
-		stat(flname, &statis);
-		if (S_ISREG(statis.st_mode) == 0)
-			printf("\033[36;01m%-*s\033[0m", len, flname);
-		else if (S_IEXEC & statis.st_mode)
-			printf("\033[31m%-*s\033[0m", len, flname);
+		if (entry->d_type == DT_DIR /*-F*/)
+			ft_printf("\033[36;01m%-*s\033[0m", len, entry->d_name);// ft_printf("/");
 		else
-			printf("%-*s", len, flname);
+			ft_printf("%-*s", len, entry->d_name);
 		cpt -= len;
 	}
 	return (1);

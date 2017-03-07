@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flenmax.c                                       :+:      :+:    :+:   */
+/*   a.h                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/02 18:47:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/07 16:08:01 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/07 18:37:50 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/07 19:35:39 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#ifndef A_H
+# define A_H
 
-int		ft_flenmax(char *path, int la)
+typedef	struct	s_la
 {
-	struct	dirent *entry;
-	DIR		*dp;
-	int		len;
-	int		lentmp;
+	char 		*str;
+	struct s_la	*next;
+}				t_la;
 
-	len = 0;
-	dp = opendir(path);
-	if (dp == NULL)
-	{
-		perror("opendir");
-		return (-1);
-	}
-	while ((entry = readdir(dp)))
-	{
-		if (entry->d_name[0] != '.' || la)
-		{
-			lentmp = ft_strlen(entry->d_name);
-			(lentmp > len ? len = lentmp : 0);
-		}
-	}
-	closedir(dp);
-	return (len);
-}
+#endif

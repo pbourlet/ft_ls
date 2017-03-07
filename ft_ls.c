@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/04 03:34:43 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/07 21:40:21 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		ft_ls(int flag, char *path)
 {
-	struct	dirent *entry;
 	DIR		*dp;
 	int		len;
+	t_ls	*l;
 
 	len = ft_flenmax(path, (flag == 100 ? 1 : 0)) + 1;
 	dp = opendir(path);
@@ -25,34 +25,24 @@ int		ft_ls(int flag, char *path)
 		perror("opendir");
 		return (-1);
 	}
-	while((entry = readdir(dp)))
+	if (flag == 0)
+		ft_ls0(flag, path);
+	else if (flag == 1)
+		ft_ls1(flag, path);
+	else if (flag == 10)
 	{
-		if (flag == 0)
-			ft_ls0(flag, len, entry->d_name);
-		else if (flag == 1)
-			ft_ls1(flag, len, entry->d_name);
-		else if (flag == 100)
-			ft_la(flag, len, entry->d_name);
-/*		if (entry->d_name[0] != '.')
-		{
-			len = ft_strlen(entry->d_name) + 2; // seulement pour windows
-			if (cpt - len < 0 && !path)
-			{
-				ft_printf("\n");
-				cpt = w.ws_col;
-			}
-			stat(entry->d_name, &statis);
-//			ft_printf("// statsize: %i //", statis.st_size);
-			if (S_ISREG(statis.st_mode) == 0)
-				printf("\033[36;01m%-*s\033[0m", len, entry->d_name);
-			else if (S_IEXEC & statis.st_mode)
-				printf("\033[31m%-*s\033[0m", len, entry->d_name);
-			else
-				printf("%-*s", len, entry->d_name);
-			cpt -= len;
-		}
-*/	}
-	(flag == 1 ? 0 : printf("\n"));
+		l = malloc(sizeof(char*) + sizeof(char*));
+		l->path = path;
+		ft_printf("%s\n", l->path);
+//		ft_ls1(1, l->path);
+		l = ft_lstck(flag, l);
+		ft_printf("\n");
+		ft_printf("%s\n", l->next->path);
+		ft_lr(l);
+		//	l = ft_lstck(flag, l);
+	}
+	else if (flag == 100)
+		ft_la(flag, dp, len);
 	closedir(dp);
 	return (0);
 }

@@ -1,46 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls0.c                                           :+:      :+:    :+:   */
+/*   ft_lstck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/07 16:30:09 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/07 16:43:51 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/07 21:11:06 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/07 21:11:10 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		ft_ls0(int flag, char *path)
+t_ls	*ft_dir(t_ls *l, char *name)
 {
-	struct	winsize	w;
+	t_ls	*b;
+
+	b = l;
+	if (!l)
+	{
+		l = malloc(sizeof(char *) + sizeof(char *));
+		l->path = name;
+		l->next = NULL;
+		return (l);
+	}
+	while (l->next)
+		l = l->next;
+	l->next = malloc(sizeof(char *) + sizeof(char *));
+	l = l->next;
+	l->path = name;
+	l->next = NULL;
+	return (b);
+}
+
+t_ls	*ft_lstck(int flag, t_ls *b)
+{
 	struct	dirent	*entry;
 	DIR				*dp;
-	int				cpt;
-	int				len;
+	t_ls			*l;
 
-	ioctl(0, TIOCGWINSZ, &w);
-	cpt = w.ws_col;
-	len = ft_flenmax(path, 0) + 1;
-	dp = opendir(path);
+	l = NULL;
+	dp = opendir(b->path);
 	flag = flag + 1;
+	if (dp == NULL)
+		return (NULL);
 	while ((entry = readdir(dp)))
 	{
 		if (entry->d_name[0] != '.')
 		{
-			if (cpt - len < 0)
-			{
-				printf("\n");
-				cpt = w.ws_col;
-			}
 			if (entry->d_type == DT_DIR)
-				printf("\033[36;01m%-*s\033[0m", len, entry->d_name);
-			else
-				printf("%-*s", len, entry->d_name);
-			cpt -= len;
+			{
+				l = ft_dir(l, entry->d_name);
+			}
 		}
 	}
 	closedir(dp);
-	return (1);
+	return (l);
 }
