@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a.h                                                :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/07 18:37:50 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/07 19:35:39 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/08 15:27:08 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_H
-# define A_H
+#include "includes/ft_ls.h"
 
-typedef	struct	s_la
+int		main(int ac, char **av)
 {
-	char 		*str;
-	struct s_la	*next;
-}				t_la;
+	int 	flag;
+	t_nl	*l;
+	t_nl	*t;
 
-#endif
+	(void)ac;
+	flag = ft_testflags(av[1]);
+	ft_printf("---------main--------\nflag: %d\n", flag);
+	l = ft_initls(av + 1);
+	t = l;
+	while (t)
+	{
+		ft_printf("arg: %s\n---------end---------\n", t->dinl);
+		t = t->next;
+	}
+	ft_ls(flag, l);
+	return(0);
+}
