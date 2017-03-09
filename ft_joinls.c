@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:12:30 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/08 19:29:02 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:19:21 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ int		ft_level(char *dinl, char *complet)
 	i = 0;
 	cpt1 = 0;
 	cpt2 = 0;
-	while (complet[i] && dinl[i])
+	while (complet[i])
 	{
 		if (complet[i] == '/')
 			cpt1++;
+		i++;
+	}
+	i = 0;
+	while (dinl[i])
+	{
 		if (dinl[i] == '/')
 			cpt2++;
 		i++;
@@ -32,7 +37,7 @@ int		ft_level(char *dinl, char *complet)
 	return (cpt1 - cpt2);
 }
 
-t_nl	*ft_joinls(t_nl *root, char *path, char *ndir, int first)
+t_nl	*ft_joinls(t_nl *root, char *path, char *ndir)
 {
 	t_nl	*conductor;
 	t_nl	*tmp;
@@ -40,9 +45,14 @@ t_nl	*ft_joinls(t_nl *root, char *path, char *ndir, int first)
 
 	complet = ft_strjoin(path, "/");
 	complet = ft_strjoin(complet, ndir);
+	tmp = root;
+	while (tmp && ft_strncmp(tmp->dinl, complet, ft_strlen(tmp->dinl)))
+		tmp = tmp->next;
+	while (tmp && (ft_strnequ(tmp->dinl, complet, ft_strlen(tmp->dinl))
+			|| !ft_level(tmp->dinl, complet)))
+		tmp = tmp->next;
 	conductor = root;
-	while (conductor->next && (!first || !(ft_level(conductor->dinl, complet) &&
-		(ft_strnequ(conductor->dinl, complet, ft_strlen(conductor->dinl))))))
+	while (conductor && conductor->next != tmp)
 		conductor = conductor->next;
 	tmp = conductor->next;
 	conductor->next = ft_nlcreate(complet);

@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/08 17:05:00 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/09 19:51:05 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -24,6 +24,8 @@ LS	=	ft_ls.c \
 		ft_init.c \
 		ft_joinls.c \
 		ft_nlcreate.c \
+		ft_strjoinf.c \
+		ft_sort.c \
 
 OBJ	=	$(LS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:18:46 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/08 17:11:29 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:33:45 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ t_nl	*ft_initls(char **av)
 	t_nl	*root;
 	t_nl	*conductor;
 
-	if (ft_testflags(av[0]))
-		av++;
+	if (!*av)
+	{
+		root = ft_nlcreate(".");
+		return (root);
+	}
 	root = ft_nlcreate(*av++);
 	conductor = root;
 	while (*av)

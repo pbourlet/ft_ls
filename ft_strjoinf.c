@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nlcreate.c                                      :+:      :+:    :+:   */
+/*   ft_strjoinf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 19:27:35 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/09 17:27:28 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/09 17:49:00 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-t_nl	*ft_nlcreate(char *str)
+char	*ft_strjoinf(char *dest, char *src)
 {
-	t_nl *new;
+	char *res;
 
-	if (!(new = (t_nl*)ft_memalloc(sizeof(t_nl))))
-		return (NULL);
-	if (!(new->dinl = ft_strdup(str)))
+	res = NULL;
+	if ((!dest && src) || (!src && dest))
+		return ((res = ft_strdup(!dest ? src : dest)));
+	if (dest)
 	{
-		free(new);
-		return (NULL);
+		res = dest;
+		dest = ft_strjoin(res, src);
+		ft_strclr(res);
+		free(res);
 	}
-	new->next = NULL;
-	return (new);
+	return (dest);
 }

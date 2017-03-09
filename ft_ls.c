@@ -6,46 +6,81 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/08 19:25:14 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/09 20:44:10 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		ft_ls(int flag, t_nl *root)
+t_nl	*ft_lsstock(t_nl *str, struct dirent *entry, char *flag, t_nl *root)
 {
-	struct	dirent	*entry;
+	if (entry->d_name[0] == '.' && ft_strchr(flag, 'a'))
+		str->next = ft_nlcreate(entry->d_name);
+	else if (entry->d_name[0] != '.')
+		str->next = ft_nlcreate(entry->d_name);
+	if (entry->d_type == DT_DIR)
+	{
+		if (ft_strchr(flag, 'R') && entry->d_name[0] != '.')
+			root = ft_joinls(root, root->dinl, entry->d_name);
+		(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
+		entry->d_name[0] != '.' ? (str->dinl = ft_strjoinf(str->dinl, "/")) : 0;
+	}
+	(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
+	entry->d_name[0] != '.' ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
+	if (str->next)
+		str = str->next;
+	return (str);
+}
+
+char	*ft_path(t_nl *root, int boole)
+{
+	char *str;
+
+	str = NULL;
+	root->next || (!root->next && boole) ?
+	(str = ft_strjoinf(str, root->dinl)) : 0;
+	root->next || (!root->next && boole) ?
+	(str = ft_strjoinf(str, ":\n")) : 0;
+	return (str);
+}
+
+t_nl	*ft_strinit(t_nl *str, t_nl *root, int boole)
+{
+	if (boole != 1)
+		str = ft_nlcreate(ft_path(root, boole) ? ft_path(root, boole) : "");
+	else
+	{
+		str->next = ft_nlcreate(ft_path(root, boole));
+		str = str->next;
+	}
+	return (str);
+}
+
+t_nl	*ft_ls(t_nl *str, char *flag, t_nl *root)
+{
+	struct dirent	*entry;
 	DIR				*dp;
 	t_nl			*begin;
 	int				boole;
+	t_nl			*res;
 
-	(void)flag;
 	begin = root;
-	boole = 0;
 	while (root && root->dinl)
 	{
-		ft_printf("\n%s:\n", root->dinl);
-		dp = opendir(root->dinl);
-		if (dp == NULL)
+		str = ft_strinit(str, root, boole);
+		boole != 1 ? (res = str) : 0;
+		if ((dp = opendir(root->dinl)) == NULL)
 		{
-			ft_printf("dir?: %s\n", root->dinl);
-			perror("opendir");
-			return (-1);
+			ft_putstr("ft_ls: ");
+			perror(root->dinl);
+			return (NULL);
 		}
 		while ((entry = readdir(dp)))
-		{
-			ft_putstr(entry->d_name);
-			if (entry->d_type == DT_DIR)
-			{
-				if (entry->d_name[0] != '.')
-					root = ft_joinls(root, root->dinl, entry->d_name, boole);
-				ft_putchar('/');
-			}
-			ft_putchar('\n');
-		}
+			str = ft_lsstock(str, entry, flag, root);
+		root->next ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 		closedir(dp);
 		boole = 1;
 		root = root->next;
 	}
-	return (0);
+	return (res);
 }

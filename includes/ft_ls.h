@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/08 18:43:48 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/09 19:46:43 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int		ft_testflags(char *s);
 int		ft_ls1(int flag, char *path);
 int		ft_la(int flag, DIR *dp, int len);
 int		ft_ls0(int flag, char *path);
-int		ft_ls(int flag, t_nl *root);
+t_nl	*ft_ls(t_nl *str, char *flag, t_nl *root);
 t_nl	*ft_initls(char **av);
-t_nl	*ft_joinls(t_nl *root, char *path, char *av, int first);
+t_nl	*ft_joinls(t_nl *root, char *path, char *av);
 t_nl	*ft_nlcreate(char *str);
+char	*ft_strjoinf(char *dest, char *src);
+t_nl	*ft_sort(char *flag, t_nl *str);
 
 #endif
