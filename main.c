@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 20:33:09 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:54:15 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int		main(int ac, char **av)
 	}
 	ft_printf("----------end---------\n");
 	str = ft_ls(str, flag, l);
-	str = ft_sort(flag, str);
-	ft_putendl("sortie:");
+	ft_putendl("vefore sort:");
 	while (str)
 	{
 		ft_putstr(str->dinl);
 		str = str->next;
 	}
+	str = ft_sort(flag, str);
 	return(0);
 }

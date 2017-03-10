@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 20:44:10 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:54:17 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ t_nl	*ft_lsstock(t_nl *str, struct dirent *entry, char *flag, t_nl *root)
 		if (ft_strchr(flag, 'R') && entry->d_name[0] != '.')
 			root = ft_joinls(root, root->dinl, entry->d_name);
 		(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
-		entry->d_name[0] != '.' ? (str->dinl = ft_strjoinf(str->dinl, "/")) : 0;
+		entry->d_name[0] != '.' ?
+		(str->next->dinl = ft_strjoinf(str->next->dinl, "/")) : 0;
 	}
-	(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
-	entry->d_name[0] != '.' ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
+	ft_strcmp(str->dinl, "") && ((entry->d_name[0] == '.'
+	&& ft_strchr(flag, 'a')) || entry->d_name[0] != '.')
+	? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 	if (str->next)
 		str = str->next;
 	return (str);
@@ -37,10 +39,20 @@ char	*ft_path(t_nl *root, int boole)
 	char *str;
 
 	str = NULL;
-	root->next || (!root->next && boole) ?
-	(str = ft_strjoinf(str, root->dinl)) : 0;
-	root->next || (!root->next && boole) ?
-	(str = ft_strjoinf(str, ":\n")) : 0;
+	if (boole != 1)
+	{
+		root->next ? (str = ft_strjoinf(str, root->dinl)) : 0;
+		root->next ? (str = ft_strjoinf(str, ":")) : 0;
+	}
+	else if (root->next || (!root->next && boole))
+	{
+		root->next || (!root->next && boole) ?
+		(str = ft_strjoinf(str, "\n\n")) : 0;
+		root->next || (!root->next && boole) ?
+		(str = ft_strjoinf(str, root->dinl)) : 0;
+		root->next || (!root->next && boole) ?
+		(str = ft_strjoinf(str, ":")) : 0;
+	}
 	return (str);
 }
 
@@ -77,9 +89,9 @@ t_nl	*ft_ls(t_nl *str, char *flag, t_nl *root)
 		}
 		while ((entry = readdir(dp)))
 			str = ft_lsstock(str, entry, flag, root);
-		root->next ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 		closedir(dp);
 		boole = 1;
+		!root->next ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 		root = root->next;
 	}
 	return (res);
