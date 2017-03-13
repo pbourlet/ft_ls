@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 19:05:28 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/13 11:14:32 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int		ft_testflags(char *s)
 			i++;
 		}
 	}
-		ft_printf("s[i]: %ci  flag: %d\n", s[i], flag);
 	return (flag);
 }

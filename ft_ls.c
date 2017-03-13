@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/10 17:54:17 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/13 15:17:57 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ t_nl	*ft_lsstock(t_nl *str, struct dirent *entry, char *flag, t_nl *root)
 	{
 		if (ft_strchr(flag, 'R') && entry->d_name[0] != '.')
 			root = ft_joinls(root, root->dinl, entry->d_name);
-		(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
-		entry->d_name[0] != '.' ?
-		(str->next->dinl = ft_strjoinf(str->next->dinl, "/")) : 0;
+//		(entry->d_name[0] == '.' && ft_strchr(flag, 'a')) ||
+//		entry->d_name[0] != '.' ?
+//		(str->next->dinl = ft_strjoinf(str->next->dinl, "/")) : 0;
 	}
-	ft_strcmp(str->dinl, "") && ((entry->d_name[0] == '.'
-	&& ft_strchr(flag, 'a')) || entry->d_name[0] != '.')
-	? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 	if (str->next)
 		str = str->next;
 	return (str);
@@ -47,7 +44,7 @@ char	*ft_path(t_nl *root, int boole)
 	else if (root->next || (!root->next && boole))
 	{
 		root->next || (!root->next && boole) ?
-		(str = ft_strjoinf(str, "\n\n")) : 0;
+		(str = ft_strjoinf(str, "\n")) : 0;
 		root->next || (!root->next && boole) ?
 		(str = ft_strjoinf(str, root->dinl)) : 0;
 		root->next || (!root->next && boole) ?
@@ -68,31 +65,26 @@ t_nl	*ft_strinit(t_nl *str, t_nl *root, int boole)
 	return (str);
 }
 
-t_nl	*ft_ls(t_nl *str, char *flag, t_nl *root)
+int		ft_ls(t_nl *str, char *flag, t_nl *root)
 {
 	struct dirent	*entry;
 	DIR				*dp;
-	t_nl			*begin;
 	int				boole;
 	t_nl			*res;
 
-	begin = root;
 	while (root && root->dinl)
 	{
+		if (!(root = ft_opentestls(&dp, root)))
+			return (-1);
 		str = ft_strinit(str, root, boole);
-		boole != 1 ? (res = str) : 0;
-		if ((dp = opendir(root->dinl)) == NULL)
-		{
-			ft_putstr("ft_ls: ");
-			perror(root->dinl);
-			return (NULL);
-		}
+		res = str;
 		while ((entry = readdir(dp)))
 			str = ft_lsstock(str, entry, flag, root);
+		res = ft_sort(flag, res);
+		ft_printls(res);
 		closedir(dp);
 		boole = 1;
-		!root->next ? (str->dinl = ft_strjoinf(str->dinl, "\n")) : 0;
 		root = root->next;
 	}
-	return (res);
+	return (1);
 }

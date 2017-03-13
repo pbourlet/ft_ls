@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_initls.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 15:12:08 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/13 10:15:12 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/13 15:10:58 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		main(int ac, char **av)
+t_nl	*ft_initls(int ac, char **av)
 {
-	char 	*flag;
-	t_nl	*l;
-	t_nl	*t;
-	t_nl	*str;
+	t_nl	*root;
+	t_nl	*conductor;
 
-	str = NULL;
-	flag = NULL;
-	if (ft_testflags(av[1]) == 1)
+	if (!*av)
 	{
-		flag = ft_strdup(av[1]);
-		av++;
+		root = ft_nlcreate(".");
+		return (root);
 	}
-	ft_printf("---------main--------\nflag: %s\n", flag);
-	l = ft_sort(flag, ft_initls(ac - 1, av + 1));
-	t = l;
-	while (t)
+	root = ft_nlcreate(*av++);
+	ac--;
+	conductor = root;
+	while (ac-- && *av)
 	{
-		ft_printf("arg: %s\n", t->dinl);
-		t = t->next;
+		conductor->next = ft_nlcreate(*av++);
+		conductor = conductor->next;
 	}
-	ft_printf("----------end---------\n");
-	ft_ls(str, flag, l);
-	return(0);
+	return (root);
 }

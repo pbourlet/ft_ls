@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 15:12:08 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/13 14:50:29 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		main(int ac, char **av)
+void	ft_printls(t_nl *res)
 {
-	char 	*flag;
-	t_nl	*l;
-	t_nl	*t;
-	t_nl	*str;
-
-	str = NULL;
-	flag = NULL;
-	if (ft_testflags(av[1]) == 1)
+	while (res)
 	{
-		flag = ft_strdup(av[1]);
-		av++;
+		!ft_strcmp(res->dinl, "") ? 0 : ft_putendl(res->dinl);
+		ft_strclr(res->dinl);
+		free(res->dinl);
+		res = res->next;
 	}
-	ft_printf("---------main--------\nflag: %s\n", flag);
-	l = ft_sort(flag, ft_initls(ac - 1, av + 1));
-	t = l;
-	while (t)
-	{
-		ft_printf("arg: %s\n", t->dinl);
-		t = t->next;
-	}
-	ft_printf("----------end---------\n");
-	ft_ls(str, flag, l);
-	return(0);
 }
