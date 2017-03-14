@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 19:45:08 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 10:03:58 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 18:48:23 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_nl	*ft_sort(char *flag, t_nl *list)
 	ls[3] = list;
 	while (ls[0])
 	{
-		if (ft_strcmp(ls[0]->dinl, ls[1]->dinl) < 0)
+		if (ft_strchr(flag, 'r') ? ft_strcmp(ls[0]->dinl, ls[1]->dinl) > 0 :
+		ft_strcmp(ls[0]->dinl, ls[1]->dinl) < 0)
 		{
 			ls[3] = ls[2];
 			ls[1] = ls[0];

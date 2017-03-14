@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 19:27:35 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 16:27:16 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_nl	*ft_nlcreate(char *str)
 		free(new);
 		return (NULL);
 	}
+	new->dir = 0;
 	new->next = NULL;
 	return (new);
 }

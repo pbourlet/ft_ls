@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 17:27:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/09 17:49:00 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 18:20:43 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 char	*ft_strjoinf(char *dest, char *src)
 {
-	char *res;
+	char *tmp;
 
-	res = NULL;
+	tmp = NULL;
 	if ((!dest && src) || (!src && dest))
-		return ((res = ft_strdup(!dest ? src : dest)));
+		return ((tmp = ft_strdup(!dest ? src : dest)));
 	if (dest)
 	{
-		res = dest;
-		dest = ft_strjoin(res, src);
-		ft_strclr(res);
-		free(res);
+		tmp = dest;
+		dest = ft_strjoin(tmp, src);
+		ft_strclr(tmp);
+		free(tmp);
 	}
 	return (dest);
 }

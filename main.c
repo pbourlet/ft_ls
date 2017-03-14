@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 15:12:08 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 17:05:27 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int		main(int ac, char **av)
 	}
 	ft_printf("----------end---------\n");
 	ft_ls(str, flag, l);
+	while (1);
+
 	return(0);
 }

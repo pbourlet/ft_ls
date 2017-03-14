@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:12:30 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 14:30:11 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 18:43:04 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_nl	*ft_joinls(t_nl *root, char *path, char *ndir)
 	t_nl	*tmp;
 	char	*complet;
 
-/*	!ft_strcmp(path, "/") ? 0 : (*/complet = ft_strjoin(path, "/");
-	complet = ft_strjoin(complet, ndir);
+	complet = ft_strequ(path, "/") ? ft_strdup(path) : ft_strjoin(path, "/");
+	complet = ft_strjoinf(complet, ndir);
 	tmp = root;
 	while (tmp && ft_strncmp(tmp->dinl, complet, ft_strlen(tmp->dinl)))
 		tmp = tmp->next;
@@ -57,5 +57,7 @@ t_nl	*ft_joinls(t_nl *root, char *path, char *ndir)
 	tmp = conductor->next;
 	conductor->next = ft_nlcreate(complet);
 	conductor->next->next = tmp;
+	ft_strclr(complet);
+	free(complet);
 	return (root);
 }

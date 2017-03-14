@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/13 12:41:34 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/14 17:34:02 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef	struct		s_nl
 {
 	char			*dinl;
+	int				dir;
 	struct s_nl		*next;
 }					t_nl;
 
@@ -37,13 +38,12 @@ int		ft_la(int flag, DIR *dp, int len);
 int		ft_ls0(int flag, char *path);
 int		ft_ls(t_nl *str, char *flag, t_nl *root);
 int		ft_opentest(DIR **dp, t_nl *root);
-int		ft_openteststr(DIR **dp, t_nl *root, char **av);
-t_nl	*ft_opentestls(DIR **dp, t_nl *root);
+t_nl	*ft_opentestls(DIR **dp, t_nl *root, int boole);
 t_nl	*ft_initls(int ac, char **av);
 t_nl	*ft_joinls(t_nl *root, char *path, char *av);
 t_nl	*ft_nlcreate(char *str);
 char	*ft_strjoinf(char *dest, char *src);
 t_nl	*ft_sort(char *flag, t_nl *str);
-void	ft_printls(t_nl *res);
+t_nl	*ft_printls(t_nl *res, t_nl *root);
 
 #endif
