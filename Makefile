@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/13 11:07:23 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/15 15:38:14 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -15,11 +15,7 @@ NAME = ft_ls
 LIB	=	-L. libft/libft.a
 
 LS	=	ft_ls.c \
-		ft_flenmax.c \
 		ft_testflags.c \
-		ft_ls1.c \
-		ft_la.c \
-		ft_ls0.c \
 		main.c \
 		ft_initls.c \
 		ft_joinls.c \
@@ -29,6 +25,7 @@ LS	=	ft_ls.c \
 		ft_printls.c \
 		ft_opentest.c \
 		ft_opentestls.c \
+		ft_isdir.c \
 
 OBJ	=	$(LS:.c=.o)
 

@@ -6,11 +6,19 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 19:45:08 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/14 18:48:23 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/15 18:19:10 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
+
+void	ft_initsort(t_nl **ls, t_nl *list)
+{
+	ls[0] = list;
+	ls[1] = list;
+	ls[2] = list;
+	ls[3] = list;
+}
 
 t_nl	*ft_sort(char *flag, t_nl *list)
 {
@@ -18,10 +26,7 @@ t_nl	*ft_sort(char *flag, t_nl *list)
 
 	if (!list || !list->next)
 		return (list);
-	ls[0] = list;
-	ls[1] = list;
-	ls[2] = list;
-	ls[3] = list;
+	ft_initsort(ls, list);
 	while (ls[0])
 	{
 		if (ft_strchr(flag, 'r') ? ft_strcmp(ls[0]->dinl, ls[1]->dinl) > 0 :

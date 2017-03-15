@@ -6,18 +6,19 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/14 17:23:06 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/15 18:46:01 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-t_nl	*ft_printls(t_nl *res, t_nl *root)
+void	ft_printls(char *flag, t_nl *res, DIR *dp, int *boole)
 {
 	while (res)
 	{
 		if (ft_strcmp(res->dinl, ""))
 		{
+			ft_strchr(flag, 'l') ? ft_putstr("stat ") : 0;
 			ft_putstr(res->dinl);
 			res->dir == 1 ? ft_putendl("/") : ft_putchar('\n');
 		}
@@ -26,8 +27,9 @@ t_nl	*ft_printls(t_nl *res, t_nl *root)
 		free(res);
 		res = res->next;
 	}
-	free(root->dinl);
-	free(root);
-	root = root->next;
-	return (root);
+	if (dp)
+	{
+		closedir(dp);
+		*boole = 1;
+	}
 }

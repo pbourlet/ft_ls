@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/14 17:34:02 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/15 18:59:30 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,20 @@ typedef	struct		s_nl
 {
 	char			*dinl;
 	int				dir;
+	struct stat		statis;
 	struct s_nl		*next;
 }					t_nl;
 
-int		ft_flenmax(char *path, int la);
 int		ft_testflags(char *s);
-int		ft_ls1(int flag, char *path);
-int		ft_la(int flag, DIR *dp, int len);
-int		ft_ls0(int flag, char *path);
 int		ft_ls(t_nl *str, char *flag, t_nl *root);
 int		ft_opentest(DIR **dp, t_nl *root);
 t_nl	*ft_opentestls(DIR **dp, t_nl *root, int boole);
-t_nl	*ft_initls(int ac, char **av);
-t_nl	*ft_joinls(t_nl *root, char *path, char *av);
-t_nl	*ft_nlcreate(char *str);
+t_nl	*ft_initls(char *flag, int ac, char **av);
+t_nl	*ft_joinls(char *flag, t_nl *root, char *path, char *av);
+t_nl	*ft_nlcreate(char *flag, char *path, char *str);
 char	*ft_strjoinf(char *dest, char *src);
 t_nl	*ft_sort(char *flag, t_nl *str);
-t_nl	*ft_printls(t_nl *res, t_nl *root);
+void	ft_printls(char *flag, t_nl *root, DIR *dp, int *boole);
+t_nl	*ft_isdir(t_nl *list);
 
 #endif

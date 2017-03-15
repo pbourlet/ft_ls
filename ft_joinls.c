@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:12:30 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/14 18:43:04 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/15 19:08:19 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int		ft_level(char *dinl, char *complet)
 	return (cpt1 - cpt2);
 }
 
-t_nl	*ft_joinls(t_nl *root, char *path, char *ndir)
+t_nl	*ft_joinls(char *flag, t_nl *root, char *path, char *ndir)
 {
 	t_nl	*conductor;
 	t_nl	*tmp;
 	char	*complet;
 
-	complet = ft_strequ(path, "/") ? ft_strdup(path) : ft_strjoin(path, "/");
+	complet = ft_strequ(path, "/") ? ft_strdup(path) : ft_strcjoin(path, '/');
 	complet = ft_strjoinf(complet, ndir);
 	tmp = root;
 	while (tmp && ft_strncmp(tmp->dinl, complet, ft_strlen(tmp->dinl)))
@@ -55,7 +55,7 @@ t_nl	*ft_joinls(t_nl *root, char *path, char *ndir)
 	while (conductor && conductor->next != tmp)
 		conductor = conductor->next;
 	tmp = conductor->next;
-	conductor->next = ft_nlcreate(complet);
+	conductor->next = ft_nlcreate(flag, ".", complet);
 	conductor->next->next = tmp;
 	ft_strclr(complet);
 	free(complet);
