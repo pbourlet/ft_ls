@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/15 19:02:01 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/16 18:03:51 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_nl	*ft_lsstock(t_nl *str, struct dirent *entry, char *flag, t_nl *root)
 		str->next = ft_nlcreate(flag, root->dinl, entry->d_name);
 	if (entry->d_type == DT_DIR)
 	{
-		if (ft_strchr(flag, 'R') && entry->d_name[0] != '.')
+		if (ft_strchr(flag, 'R') && ft_strcmp(entry->d_name, ".")
+		&& ft_strcmp(entry->d_name, "..") && (entry->d_name[0] != '.'
+		|| ft_strchr(flag, 'a')))
 			root = ft_joinls(flag, root, root->dinl, entry->d_name);
 		str->next ? str->next->dir = 1 : 0;
 	}
