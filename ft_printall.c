@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initls.c                                        :+:      :+:    :+:   */
+/*   ft_printall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 10:15:12 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 20:44:55 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/20 11:39:22 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/20 21:35:01 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-t_nl	*ft_initls(char *flag, int ac, char **av)
+t_nl	*ft_printall(char *flag, t_nl *res, t_nl *root)
 {
-	t_nl		*root;
-	t_nl		*conductor;
-	char		*tmp;
+	int len[FORMAT_SIZE];
 
-	if (!*av)
-		return ((root = ft_nlcreate(flag, ".", ".")));
-	root = NULL;
-	tmp = ft_strcjoin(flag, 's');
-	while (ac && *av && root == NULL)
+	ft_strchr(flag, 'l') ? ft_sizemax(res, len) : 0;
+		ft_printf("total %d\n", len[4]);
+	while (res)
 	{
-		root = ft_nlcreate(tmp, ".", *av++);
-		ac--;
+		ft_printls(flag, res, root, len);
+		ft_strclr(res->dinl);
+		free(res->dinl);
+		free(res);
+		res = res->next;
 	}
-	conductor = root;
-	while (ac-- && *av)
-	{
-		conductor->next = ft_nlcreate(tmp, ".", *av++);
-		conductor->next ? conductor = conductor->next : 0;
-	}
-	free(tmp);
+	free(root->dinl);
+	free(root);
+	root = root->next;
 	return (root);
 }

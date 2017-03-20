@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 21:35:00 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/20 11:40:23 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/20 16:04:02 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		main(int ac, char **av)
+void	ft_putlenstr(int len, char *content)
 {
-	char	*flag;
-	t_nl	*l;
-	t_nl	*str;
+	int i;
 
-	str = NULL;
-	flag = NULL;
-	if (ft_testflags(av[1]) == 1)
-	{
-		flag = ft_strdup(av[1]);
-		av++;
-	}
-	l = ft_isfile(flag, ft_sort(flag, ft_isdir(ft_sort(flag,
-	ft_initls(flag, ac - 1, av + 1)))));
-	ft_ls(str, flag, l);
-	return (0);
+	i = ft_strlen(content);
+	ft_putstr(content);
+	while (i++ < len)
+		ft_putchar(' ');
+}
+
+void	ft_putlennbr(int len, int content)
+{
+	int i;
+
+	i = ft_nblen(content);
+	while (i++ < len)
+		ft_putchar(' ');
+	ft_putnbr(content);
 }

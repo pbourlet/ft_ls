@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initls.c                                        :+:      :+:    :+:   */
+/*   ft_acl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 10:15:12 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 20:44:55 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/20 21:02:24 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/20 21:59:03 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-t_nl	*ft_initls(char *flag, int ac, char **av)
+void	ft_printacl(char *name, char *path)
 {
-	t_nl		*root;
-	t_nl		*conductor;
-	char		*tmp;
+	acl_t   acl;
+	char	*tmp;
 
-	if (!*av)
-		return ((root = ft_nlcreate(flag, ".", ".")));
-	root = NULL;
-	tmp = ft_strcjoin(flag, 's');
-	while (ac && *av && root == NULL)
-	{
-		root = ft_nlcreate(tmp, ".", *av++);
-		ac--;
-	}
-	conductor = root;
-	while (ac-- && *av)
-	{
-		conductor->next = ft_nlcreate(tmp, ".", *av++);
-		conductor->next ? conductor = conductor->next : 0;
-	}
+	tmp = ft_strcjoin(path, '/');
+	tmp = ft_strjoinf(tmp, name);
+	acl = acl_get_file(tmp, ACL_TYPE_EXTENDED);
+	if (listxattr(tmp, NULL, 0, XATTR_NOFOLLOW) > 0)
+		ft_putchar('@');
+	else if (acl)
+		ft_putchar('+');
+	else
+		ft_putchar(' ');
+	acl_free((void*)acl);
 	free(tmp);
-	return (root);
 }

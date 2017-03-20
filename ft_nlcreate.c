@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/15 19:05:21 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/20 20:56:28 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,19 @@ t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 
 	if (!(new = (t_nl*)ft_memalloc(sizeof(t_nl))))
 		return (NULL);
-	if (ft_strcmp(str, "") && (ft_strchr(flag, 'l') || ft_strchr(flag, 't')))
+	if (ft_strcmp(str, "") && ft_strchr(flag, 'l'))
 	{
-		complet = ft_strcjoin(path, '/');
-		complet = ft_strjoinf(complet, str);
-		if (lstat(complet, &new->statis) < 0)
+		if (str[0] != '/')
 		{
-			ft_putstr("./ft_ls: ");
-			perror(str);
+			complet = ft_strcjoin(path, '/');
+			complet = ft_strjoinf(complet, str);
 		}
+		else
+			complet = ft_strdup(str);
+//		lstat(complet, &new->statis);
+		ft_strchr(flag, 's') && !ft_strchr(flag, 'l') ?
+		stat(complet, &new->statis) : lstat(complet, &new->statis);
+		free(complet);
 	}
 	if (!(new->dinl = ft_strdup(str)))
 	{

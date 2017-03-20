@@ -1,7 +1,0 @@
-ls :
-_ouvrir le dossier courrant
-tant qu('il y a encore fichier ou dossier)
-	_lire le nom du fichier ou dossier s'y trouvant
-	_ecrire ce nom
-	_nom++
-_fermer le dossier

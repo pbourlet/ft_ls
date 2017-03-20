@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/16 15:46:51 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/20 22:13:12 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_illegal(char c)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", c);
-	ft_printf("usage: ft_ls [-lRart] [file ...]\n");
+	ft_putendl("usage: ft_ls [-GRSalrts] [file ...]");
 	exit(1);
 }
 
