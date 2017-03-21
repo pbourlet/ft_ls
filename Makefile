@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/20 22:08:29 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/21 15:44:09 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -32,6 +32,7 @@ LS	=	ft_ls.c \
 		ft_sizemax.c \
 		ft_printmode.c \
 		ft_printacl.c \
+		ft_printlnk.c \
 		ft_testdir.c \
 
 OBJ	=	$(LS:.c=.o)

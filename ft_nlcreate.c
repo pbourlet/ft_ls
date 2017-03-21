@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 20:56:28 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:37:03 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 		}
 		else
 			complet = ft_strdup(str);
-//		lstat(complet, &new->statis);
 		ft_strchr(flag, 's') && !ft_strchr(flag, 'l') ?
 		stat(complet, &new->statis) : lstat(complet, &new->statis);
 		free(complet);

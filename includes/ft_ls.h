@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 22:07:50 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:43:58 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		ft_nblld(long long int nb);
 void	ft_sizemax(t_nl *ls, int *len);
 void	ft_printmode(struct stat st);
 void	ft_printacl(char *name, char *path);
+void	ft_printlnk(t_nl *res, t_nl *root);
 int		ft_testdir(struct dirent *ent, char *path);
 
 #endif
