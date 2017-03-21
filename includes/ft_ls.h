@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 18:34:11 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/21 19:17:45 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strjoinf(char *dest, char *src);
 t_nl	*ft_sort(char *flag, t_nl *str);
 t_nl	*ft_printall(char *flag, t_nl *res, t_nl *root);
 void	ft_printls(char *flag, t_nl *res, t_nl *root, int *len);
-void	ft_sizemax(t_nl*ls, int *len);
+void	ft_sizemax(char *flag, t_nl*ls, int *len);
 t_nl	*ft_isdir(t_nl *list);
 t_nl	*ft_isfile(char *flag, t_nl *list);
 void	ft_putlenstr(int len, char *content);
@@ -53,7 +53,6 @@ void	ft_putlennbr(int len, int content);
 void	ft_putlenlld(int len, long long int content);
 void	ft_putlld(long long int content);
 int		ft_nblld(long long int nb);
-void	ft_sizemax(t_nl *ls, int *len);
 void	ft_printmode(struct stat st);
 void	ft_printacl(char *name, char *path);
 void	ft_printlnk(t_nl *res, t_nl *root);

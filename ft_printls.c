@@ -6,13 +6,13 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 18:36:48 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/21 19:15:43 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-void	ft_printetc(t_nl *ls, int *len)
+void	ft_printetc(char *flag, t_nl *ls, int *len)
 {
 	struct passwd	*pw;
 	struct group	*gr;
@@ -22,8 +22,11 @@ void	ft_printetc(t_nl *ls, int *len)
 	ft_putstr(" ");
 	ft_putlennbr(len[0], ls->statis.st_nlink);
 	ft_putchar(' ');
-	ft_putlenstr(len[1], pw->pw_name);
-	ft_putstr("  ");
+	if (!ft_strchr(flag, 'g'))
+	{
+		ft_putlenstr(len[1], pw->pw_name);
+		ft_putstr("  ");
+	}
 	ft_putlenstr(len[2], gr->gr_name);
 	ft_putchar(' ');
 	if (!S_ISCHR(ls->statis.st_mode) && !S_ISBLK(ls->statis.st_mode))
@@ -36,11 +39,11 @@ void	ft_printetc(t_nl *ls, int *len)
 	}
 }
 
-void	ft_printstat(t_nl *ls, t_nl *root, int *len)
+void	ft_printstat(char *flag, t_nl *ls, t_nl *root, int *len)
 {
 	ft_printmode(ls->statis);
 	ft_printacl(ls->dinl, root->dinl);
-	ft_printetc(ls, len);
+	ft_printetc(flag, ls, len);
 	ft_printf(" %.12s ", ctime(&ls->statis.st_mtime) + 4);
 }
 
@@ -48,11 +51,11 @@ void	ft_printls(char *flag, t_nl *res, t_nl *root, int *len)
 {
 	if (ft_strcmp(res->dinl, ""))
 	{
-		ft_strchr(flag, 'l') ? ft_printstat(res, root, len) : 0;
+		ft_strchr(flag, 'l') || ft_strchr(flag, 'g') ? ft_printstat(flag, res, root, len) : 0;
 		ft_strchr(flag, 'G') ? ft_printcolor(res) : 0;
 		ft_putstr(res->dinl);
 		ft_putstr("\033[0m");
-		ft_strchr(flag, 'l') && S_ISLNK(res->statis.st_mode) ?
+		(ft_strchr(flag, 'l') || ft_strchr(flag, 'g')) && S_ISLNK(res->statis.st_mode) ?
 		ft_printlnk(res, root) : 0;
 		res->dir == 1 ? ft_putendl("/") : ft_putchar('\n');
 	}
