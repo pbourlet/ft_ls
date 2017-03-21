@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 11:39:22 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 21:35:01 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/21 17:44:15 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 t_nl	*ft_printall(char *flag, t_nl *res, t_nl *root)
 {
-	int len[FORMAT_SIZE];
+	t_nl	*tmp;
+	int		len[FORMAT_SIZE];
 
 	ft_strchr(flag, 'l') ? ft_sizemax(res, len) : 0;
-		ft_printf("total %d\n", len[4]);
+	res->next && root->next ? ft_printf("total %d\n", len[4]) : 0;
 	while (res)
 	{
 		ft_printls(flag, res, root, len);
 		ft_strclr(res->dinl);
 		free(res->dinl);
+		tmp = res->next;
 		free(res);
 		res = res->next;
 	}

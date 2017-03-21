@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printcolor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 17:24:27 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/21 18:33:07 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/21 18:42:54 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		main(int ac, char **av)
+void	ft_printcolor(t_nl *root)
 {
-	char	*flag;
-	t_nl	*l;
-	t_nl	*str;
-
-	str = NULL;
-	flag = NULL;
-	if (ft_testflags(av[1]) == 1)
-	{
-		flag = ft_strdup(av[1]);
-		av++;
-	}
-	l = ft_isfile(flag, ft_sort(flag, ft_isdir(ft_sort(flag,
-	ft_initls(flag, ac - 1, av + 1)))));
-	ft_ls(str, flag, l);
-	return (0);
+	if (S_ISDIR(root->statis.st_mode))
+		ft_putstr("\033[36;01m");
+	else if (S_ISLNK(root->statis.st_mode))
+		ft_putstr("\033[35m");
+	else if (S_ISFIFO(root->statis.st_mode))
+		ft_putstr("\033[33m");
+	else if (S_IXOTH & root->statis.st_mode || S_IXGRP & root->statis.st_mode
+	|| S_IXUSR & root->statis.st_mode)
+		ft_putstr("\033[31m");
 }
