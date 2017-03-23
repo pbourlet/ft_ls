@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/21 18:34:22 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/22 23:58:38 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -34,7 +34,11 @@ LS	=	ft_ls.c \
 		ft_printacl.c \
 		ft_printlnk.c \
 		ft_printcolor.c \
+		ft_printblks.c \
 		ft_testdir.c \
+		ft_cmp.c \
+		ft_recursif.c \
+		ft_error.c \
 
 OBJ	=	$(LS:.c=.o)
 

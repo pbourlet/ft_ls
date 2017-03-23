@@ -12,7 +12,6 @@ int		ft_testdir(struct dirent *ent, char *path)
 	{
 		name = ft_strcjoin(path, '/');
 		name = ft_strjoinf(name, ent->d_name);
-//		name = ft_ls_pathname(path, ent->d_name);
 		if (lstat(name, &st) < 0)
 		{
 			ft_putstr("ft_ls: ");

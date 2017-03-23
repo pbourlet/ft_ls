@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:12:30 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/15 19:08:19 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:10:40 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ t_nl	*ft_joinls(char *flag, t_nl *root, char *path, char *ndir)
 	complet = ft_strequ(path, "/") ? ft_strdup(path) : ft_strcjoin(path, '/');
 	complet = ft_strjoinf(complet, ndir);
 	tmp = root;
-	while (tmp && ft_strncmp(tmp->dinl, complet, ft_strlen(tmp->dinl)))
+	while (tmp && /*ft_cmp(tmp, flag, complet))*/ft_strncmp(tmp->dinl, complet, ft_strlen(tmp->dinl)))
 		tmp = tmp->next;
-	while (tmp && (ft_strnequ(tmp->dinl, complet, ft_strlen(tmp->dinl))
-			|| !ft_level(tmp->dinl, complet)))
+	while (tmp && (/*ft_eq(tmp, flag, complet)*/ft_strnequ(tmp->dinl, complet, ft_strlen(tmp->dinl))
+	|| !ft_level(tmp->dinl, complet)))
 		tmp = tmp->next;
 	conductor = root;
 	while (conductor && conductor->next != tmp)

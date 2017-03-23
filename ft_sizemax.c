@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 16:11:55 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 19:17:13 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:22:42 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_sizemax(char *flag, t_nl *cond, int *len)
 	len[2] = 0;
 	len[3] = 0;
 	len[4] = 0;
+	len[5] = 0;
 	while (cond)
 	{
 		gr = getgrgid(cond->statis.st_gid);
@@ -40,6 +41,8 @@ void	ft_sizemax(char *flag, t_nl *cond, int *len)
 		!S_ISBLK(cond->statis.st_mode) ? ft_nblen(cond->statis.st_size) : 9;
 		tmp[3] > len[3] ? len[3] = tmp[3] : 0;
 		len[4] += cond->statis.st_blocks;
+		tmp[5] = ft_nblen(cond->statis.st_blocks);
+		tmp[5] > len[5] ? len[5] = tmp[5] : 0;
 		cond = cond->next;
 	}
 }

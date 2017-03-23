@@ -6,11 +6,12 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:28:26 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 18:11:08 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:52:32 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
+
 
 t_nl	*ft_lsstock(t_nl *str, struct dirent *entry, char *flag, t_nl *root)
 {
@@ -47,7 +48,7 @@ int		ft_ls(t_nl *str, char *flag, t_nl *root)
 
 	while (root && root->dinl)
 	{
-		(boole != 1 && root->next) || root->dir == 2 ?
+		(boole != 1 && root->next) || (boole != 1 && root->dir == 2) ?
 		ft_printf("%s:\n", root->dinl) : 0;
 		boole == 1 ? ft_printf("\n%s:\n", root->dinl) : 0;
 		if (!(root = ft_opentestls(&dp, root, boole)))
@@ -59,7 +60,7 @@ int		ft_ls(t_nl *str, char *flag, t_nl *root)
 		res = ft_sort(flag, res);
 		root = ft_printall(flag, res, root);
 		boole = ft_next(dp, boole);
-		ft_strchr(flag, 'r') ? root = ft_sort(flag, root) : 0;
+		ft_strchr(flag, 'r') || ft_strchr(flag, 't') || ft_strchr(flag, 'S') ? root = ft_sort(flag, root) : 0;
 	}
 	free(root);
 	return (0);

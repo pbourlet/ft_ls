@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/21 19:15:43 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/23 01:09:15 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,26 @@ void	ft_printetc(char *flag, t_nl *ls, int *len)
 	}
 }
 
-void	ft_printstat(char *flag, t_nl *ls, t_nl *root, int *len)
+void	ft_printstat(char *flag, t_nl *ls, char *path, int *len)
 {
 	ft_printmode(ls->statis);
-	ft_printacl(ls->dinl, root->dinl);
+	ft_printacl(ls->dinl, path);
 	ft_printetc(flag, ls, len);
 	ft_printf(" %.12s ", ctime(&ls->statis.st_mtime) + 4);
 }
 
-void	ft_printls(char *flag, t_nl *res, t_nl *root, int *len)
+void	ft_printls(char *flag, t_nl *res, char *path, int *len)
 {
 	if (ft_strcmp(res->dinl, ""))
 	{
-		ft_strchr(flag, 'l') || ft_strchr(flag, 'g') ? ft_printstat(flag, res, root, len) : 0;
+		ft_strchr(flag, 's') ? ft_printblks(res->statis, len) : 0;
+		ft_strchr(flag, 'l') || ft_strchr(flag, 'g') ? ft_printstat(flag, res, path, len) : 0;
 		ft_strchr(flag, 'G') ? ft_printcolor(res) : 0;
-		ft_putstr(res->dinl);
+		ft_strchr(flag, 'd') ? ft_putstr(res->dinl) :
+		ft_putstr(res->dinl + (!ft_strcmp(path, "/") ? 2 : ft_strlen(path)));
 		ft_putstr("\033[0m");
 		(ft_strchr(flag, 'l') || ft_strchr(flag, 'g')) && S_ISLNK(res->statis.st_mode) ?
-		ft_printlnk(res, root) : 0;
+		ft_printlnk(res, path) : 0;
 		res->dir == 1 ? ft_putendl("/") : ft_putchar('\n');
 	}
 }
