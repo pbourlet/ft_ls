@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/23 00:10:38 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/24 22:03:34 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef	struct		s_nl
 	struct s_nl		*next;
 }					t_nl;
 
-int		ft_testflags(char *s);
+char	*ft_testflags(char ***s, int *ac);
 int		ft_ls(t_nl *str, char *flag, t_nl *root);
 int		ft_opentest(DIR **dp, t_nl *root);
 t_nl	*ft_opentestls(DIR **dp, t_nl *root, int boole);

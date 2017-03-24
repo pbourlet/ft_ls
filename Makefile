@@ -14,7 +14,7 @@ NAME = ft_ls
 
 LIB	=	-L. libft/libft.a
 
-LS	=	ft_ls.c \
+LS	=	\
 		ft_testflags.c \
 		main.c \
 		ft_initls.c \

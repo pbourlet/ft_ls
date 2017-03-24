@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/22 13:11:42 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/24 22:37:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,43 @@ void	ft_illegal(char c)
 	exit(1);
 }
 
-int		ft_testflags(char *s)
+char	*ft_test(char *flag, char c)
 {
-	int flag;
-	int i;
+	!flag ? flag = ft_strnew(0) : 0;
+	if (c == 'G' || c == 'R' || c == 'S' || c == 'a' || c == 'd' ||
+	c == 'g' || c == 'l' || c == 'r' || c == 's' || c == 't')
+		flag = ft_strcjoin(flag, c);
+	else
+		ft_illegal(c);
+	return (flag);
+}
 
-	flag = -1;
-	i = 1;
-	if (!s || s[0] != '-')
-		return (0);
-	if (!ft_strcmp(s, "--"))
-		return (2);
-	if (s[0] == '-')
+char	*ft_testflags(char ***av, int *ac)
+{
+	char	*flag;
+	char	**s;
+	int 	i[2];
+
+	flag = NULL;
+	s = *av;
+	i[0] = 0;
+	while (*ac && s[0][0] == '-')
 	{
-		while (s[i])
+		i[1] = 1;
+		while (s[i[0]][0] == '-' && s[i[0]][1] != '-' && s[i[0]][i[1]])
+			flag = ft_test(flag, s[i[0]][i[1]++]);
+		if (!s[i[0]] || *s[i[0]] != '-' || !ft_strcmp(s[i[0]], "--"))
 		{
-			if (s[i] == 'l' || s[i] == 'R' || s[i] == 'a' || s[i] == 'd' || s[i] == 'S'
-				|| s[i] == 'r' || s[i] == 't' || s[i] == 'G' || s[i] == 'g' || s[i] == 's')
-				flag = 1;
-			else
-				ft_illegal(s[i]);
-			i++;
+			flag[0] ? *av = *av + i[0] : 0;
+			return (flag);
 		}
+		*ac -= 1;
+		i[0]++;
+	}
+	if (!s[i[0]] || *s[i[0]] != '-' || !ft_strcmp(s[i[0]], "--"))
+	{
+		flag && flag[0] ? *av = *av + i[0] : 0;
+		return (flag);
 	}
 	return (flag);
 }
