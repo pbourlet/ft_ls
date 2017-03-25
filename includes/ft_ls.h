@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 17:09:08 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/25 21:20:01 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/acl.h>
 # include <sys/stat.h>
+# include <sys/time.h>
 # include <pwd.h>
 # include <uuid/uuid.h>
 # include <grp.h>
@@ -59,6 +60,7 @@ void	ft_printacl(char *name);
 void	ft_printlnk(t_nl *res);
 void	ft_printcolor(t_nl *root);
 void	ft_printblks(struct stat st, int *len);
+void	ft_printtime(t_nl *ls);
 int		ft_testdir(struct dirent *ent, char *path);
 int		ft_cmp(t_nl *root, char *flag, char *name);
 int	ft_lssize(t_nl *ls);

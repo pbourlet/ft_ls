@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/25 14:54:56 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/25 20:57:59 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -41,6 +41,7 @@ LS	=	\
 		ft_error.c \
 		ft_testarg.c \
 		ft_lssize.c \
+		ft_printtime.c \
 
 OBJ	=	$(LS:.c=.o)
 
