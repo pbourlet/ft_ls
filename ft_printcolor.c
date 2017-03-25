@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:33:07 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/22 12:22:40 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/25 16:46:39 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	ft_printcolor(t_nl *root)
 {
 	if (S_ISDIR(root->statis.st_mode))
 		ft_putstr("\033[36;01m");
+	else if (S_ISBLK(root->statis.st_mode))
+		ft_putstr("\033[46m\033[34m");
+	else if (S_ISCHR(root->statis.st_mode))
+		ft_putstr("\033[43m\033[34m");
 	else if (S_ISLNK(root->statis.st_mode))
 		ft_putstr("\033[35m");
 	else if (S_ISFIFO(root->statis.st_mode))

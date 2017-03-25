@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/24 22:43:25 by                  ###   ########.fr       */
+/*   Updated: 2017/03/25 14:58:13 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int		main(int ac, char **av)
 			*av = ".";
 		}
 	}
-	l = ft_isfile(flag, ft_sort(flag, ft_isdir(ft_sort(flag,
-	ft_initls(flag, ac, av)))));
+	l = ft_testarg(flag, ft_sort(flag, ft_initls(flag, ac, av)));
 	while (l)
 	{
 		l->next ? ft_printf("%s:\n", l->dinl) : 0;

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_acl.c                                           :+:      :+:    :+:   */
+/*   ft_lssize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 21:02:24 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 17:09:21 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/25 14:52:21 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/25 15:00:13 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-void	ft_printacl(char *name)
+int	ft_lssize(t_nl *ls)
 {
-	acl_t   acl;
+	int cpt;
 
-	acl = acl_get_file(name, ACL_TYPE_EXTENDED);
-	if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
-		ft_putchar('@');
-	else if (acl)
-		ft_putchar('+');
-	else
-		ft_putchar(' ');
-	acl_free((void*)acl);
+	cpt = 0;
+	while (ls)
+	{
+		cpt++;
+		ls = ls->next;
+	}
+	return (cpt);
 }

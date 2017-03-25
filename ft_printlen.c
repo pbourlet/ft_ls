@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 11:40:23 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 16:04:02 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/25 16:09:05 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putlenstr(int len, char *content)
 {
 	int i;
 
-	i = ft_strlen(content);
+	i = content ? ft_strlen(content) : 0;
 	ft_putstr(content);
 	while (i++ < len)
 		ft_putchar(' ');

@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/24 23:09:02 by                  ###   ########.fr       */
+/*   Updated: 2017/03/25 17:08:31 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_printetc(char *flag, t_nl *ls, int *len)
 	ft_putchar(' ');
 	if (!ft_strchr(flag, 'g'))
 	{
-		ft_putlenstr(len[1], pw->pw_name);
+		ft_putlenstr(len[1], pw ? pw->pw_name : NULL);
 		ft_putstr("  ");
 	}
-	ft_putlenstr(len[2], gr->gr_name);
+	ft_putlenstr(len[2], gr ? gr->gr_name : NULL);
 	ft_putchar(' ');
 	if (!S_ISCHR(ls->statis.st_mode) && !S_ISBLK(ls->statis.st_mode))
-		ft_putlennbr(len[3] + 1, ls->statis.st_size);
+		ft_putlennbr(len[3], ls->statis.st_size);
 	else
 	{
 		ft_putlennbr(len[3] - 5, major(ls->statis.st_rdev));
@@ -39,10 +39,10 @@ void	ft_printetc(char *flag, t_nl *ls, int *len)
 	}
 }
 
-void	ft_printstat(char *flag, t_nl *ls, char *path, int *len)
+void	ft_printstat(char *flag, t_nl *ls, int *len)
 {
 	ft_printmode(ls->statis);
-	ft_printacl(ls->dinl, path);
+	ft_printacl(ls->dinl);
 	ft_printetc(flag, ls, len);
 	ft_printf(" %.12s ", ctime(&ls->statis.st_mtime) + 4);
 }
@@ -53,15 +53,14 @@ void	ft_printls(char *flag, t_nl *res, char *path, int *len)
 	{
 		ft_strchr(flag, 's') ? ft_printblks(res->statis, len) : 0;
 		ft_strchr(flag, 'l') || ft_strchr(flag, 'g') ?
-		ft_printstat(flag, res, path, len) : 0;
+		ft_printstat(flag, res, len) : 0;
 		ft_strchr(flag, 'G') ? ft_printcolor(res) : 0;
 		ft_strchr(flag, 'd') ? ft_putstr(res->dinl) :
 		ft_putstr(res->dinl + (!ft_strcmp(path, "/") ? 2 :
 		ft_strlen(path)));
 		ft_putstr("\033[0m");
 		(ft_strchr(flag, 'l') || ft_strchr(flag, 'g')) &&
-		S_ISLNK(res->statis.st_mode) ?
-		ft_printlnk(res, path) : 0;
+		S_ISLNK(res->statis.st_mode) ? ft_printlnk(res) : 0;
 		res->dir == 1 ? ft_putendl("/") : ft_putchar('\n');
 	}
 }

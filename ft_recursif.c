@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 16:18:59 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/24 22:49:55 by                  ###   ########.fr       */
+/*   Updated: 2017/03/25 16:42:09 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_recursif(char *flag, t_nl *root, int *boole)
 	*boole = 1;
 	if ((dp = opendir(root->dinl)))
 	{
-		while (dp && (entry = readdir(dp)))
+		while ((entry = readdir(dp)))
 		{
 			if (ft_strchr(flag, 'a') || entry->d_name[0] != '.')
 				file = ft_add(flag, file, path, entry);

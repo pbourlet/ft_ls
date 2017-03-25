@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_acl.c                                           :+:      :+:    :+:   */
+/*   ft_testarg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 21:02:24 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 17:09:21 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/25 14:40:56 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/03/25 15:20:58 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-void	ft_printacl(char *name)
+t_nl	*ft_testarg(char *flag, t_nl *list)
 {
-	acl_t   acl;
+	t_nl	*res;
+	int	taille[3];
 
-	acl = acl_get_file(name, ACL_TYPE_EXTENDED);
-	if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
-		ft_putchar('@');
-	else if (acl)
-		ft_putchar('+');
-	else
-		ft_putchar(' ');
-	acl_free((void*)acl);
+	taille[0] = ft_lssize(list);
+	res = ft_sort(flag, ft_isdir(list));
+	taille[1] = ft_lssize(res);
+	res = ft_isfile(flag, res);
+	taille[2] = ft_lssize(res);
+	if (taille[1] != taille [0] || taille[2] != taille[0])
+	{
+		res ? ft_putchar('\n') : 0;
+	}
+	return (res);
 }

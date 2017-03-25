@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/24 22:03:34 by                  ###   ########.fr       */
+/*   Updated: 2017/03/25 17:09:08 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_nl	*ft_sort(char *flag, t_nl *str);
 void	ft_printall(char *flag, t_nl *res, char *path);
 void	ft_printls(char *flag, t_nl *res, char *path, int *len);
 void	ft_sizemax(char *flag, t_nl*ls, int *len);
+t_nl	*ft_testarg(char *flag, t_nl *list);
 t_nl	*ft_isdir(t_nl *list);
 t_nl	*ft_isfile(char *flag, t_nl *list);
 void	ft_putlenstr(int len, char *content);
@@ -54,12 +55,13 @@ void	ft_putlenlld(int len, long long int content);
 void	ft_putlld(long long int content);
 int		ft_nblld(long long int nb);
 void	ft_printmode(struct stat st);
-void	ft_printacl(char *name, char *path);
-void	ft_printlnk(t_nl *res, char *path);
+void	ft_printacl(char *name);
+void	ft_printlnk(t_nl *res);
 void	ft_printcolor(t_nl *root);
 void	ft_printblks(struct stat st, int *len);
 int		ft_testdir(struct dirent *ent, char *path);
 int		ft_cmp(t_nl *root, char *flag, char *name);
+int	ft_lssize(t_nl *ls);
 void	ft_recursif(char *flag, t_nl *root, int *boole);
 void	ft_error(char *str);
 

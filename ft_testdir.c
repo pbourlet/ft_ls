@@ -6,7 +6,7 @@ int		ft_testdir(struct dirent *ent, char *path)
 	char		*name;
 
 	if ((ent->d_type != DT_DIR && ent->d_type != DT_UNKNOWN)
-			|| ft_strequ(ent->d_name, ".") || ft_strequ(ent->d_name, ".."))
+	|| ft_strequ(ent->d_name, ".") || ft_strequ(ent->d_name, ".."))
 		return (0);
 	if (ent->d_type == DT_UNKNOWN)
 	{
