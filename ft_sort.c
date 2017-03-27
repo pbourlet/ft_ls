@@ -6,13 +6,13 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 19:45:08 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/22 14:49:12 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 10:10:41 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
 
-int		ft_ordre(char *flag, t_nl **ls)
+int		ft_sordre(char *flag, t_nl **ls)
 {
 	int res;
 
@@ -20,9 +20,9 @@ int		ft_ordre(char *flag, t_nl **ls)
 	if (ft_strchr(flag, 'S'))
 	{
 		if (ft_strchr(flag, 'r'))
-			    res = ls[0]->statis.st_size < ls[1]->statis.st_size ? 1 : 0;
+			res = ls[0]->statis.st_size < ls[1]->statis.st_size ? 1 : 0;
 		else
-			    res = ls[0]->statis.st_size > ls[1]->statis.st_size ? 1 : 0;
+			res = ls[0]->statis.st_size > ls[1]->statis.st_size ? 1 : 0;
 		if (ls[0]->statis.st_size == ls[1]->statis.st_size)
 		{
 			if (ft_strchr(flag, 'r'))
@@ -31,7 +31,15 @@ int		ft_ordre(char *flag, t_nl **ls)
 				res = ft_strcmp(ls[0]->dinl, ls[1]->dinl) < 0 ? 1 : 0;
 		}
 	}
-	else if (ft_strchr(flag, 't'))
+	return (res);
+}
+
+int		ft_tordre(char *flag, t_nl **ls)
+{
+	int res;
+
+	res = 0;
+	if (ft_strchr(flag, 't'))
 	{
 		if (ft_strchr(flag, 'r'))
 			res = ls[0]->statis.st_mtime < ls[1]->statis.st_mtime ? 1 : 0;
@@ -45,6 +53,18 @@ int		ft_ordre(char *flag, t_nl **ls)
 				res = ft_strcmp(ls[0]->dinl, ls[1]->dinl) < 0 ? 1 : 0;
 		}
 	}
+	return (res);
+}
+
+int		ft_ordre(char *flag, t_nl **ls)
+{
+	int res;
+
+	res = 0;
+	if (ft_strchr(flag, 'S'))
+		res = ft_sordre(flag, ls);
+	else if (ft_strchr(flag, 't'))
+		res = ft_tordre(flag, ls);
 	else
 	{
 		if (ft_strchr(flag, 'r'))

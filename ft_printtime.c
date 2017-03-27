@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 20:50:19 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 21:31:06 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 10:43:55 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_printtime(t_nl *ls)
 {
-	time_t curtime;
-	struct timeval tv;
+	time_t			curtime;
+	struct timeval	tv;
 
-	gettimeofday(&tv, NULL); 
-	curtime=tv.tv_sec;
+	gettimeofday(&tv, NULL);
+	curtime = tv.tv_sec;
 	if (curtime - ls->statis.st_mtime > 15770000 ||
 	curtime - ls->statis.st_mtime < -15770000)
 	{

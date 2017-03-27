@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/24 22:37:10 by                  ###   ########.fr       */
+/*   Updated: 2017/03/27 10:13:38 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ void	ft_illegal(char c)
 
 char	*ft_test(char *flag, char c)
 {
+	char	*tmp;
+
 	!flag ? flag = ft_strnew(0) : 0;
 	if (c == 'G' || c == 'R' || c == 'S' || c == 'a' || c == 'd' ||
 	c == 'g' || c == 'l' || c == 'r' || c == 's' || c == 't')
-		flag = ft_strcjoin(flag, c);
+	{
+		tmp = flag;
+		flag = ft_strcjoin(tmp, c);
+		free(tmp);
+	}
 	else
+	{
+		free(flag);
 		ft_illegal(c);
+	}
 	return (flag);
 }
 
@@ -34,7 +43,7 @@ char	*ft_testflags(char ***av, int *ac)
 {
 	char	*flag;
 	char	**s;
-	int 	i[2];
+	int		i[2];
 
 	flag = NULL;
 	s = *av;
@@ -53,9 +62,6 @@ char	*ft_testflags(char ***av, int *ac)
 		i[0]++;
 	}
 	if (!s[i[0]] || *s[i[0]] != '-' || !ft_strcmp(s[i[0]], "--"))
-	{
 		flag && flag[0] ? *av = *av + i[0] : 0;
-		return (flag);
-	}
 	return (flag);
 }
