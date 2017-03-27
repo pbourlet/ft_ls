@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 16:18:59 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:43:05 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 13:27:52 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_initrecursif(t_nl **fich, char **path, t_nl *root, int *boole)
 	fich[1] = NULL;
 	*path = !ft_strcmp(root->dinl, "/") ? ft_strdup(root->dinl) :
 	ft_strcjoin(root->dinl, '/');
-	*boole ? ft_printf("\n%s:\n", root->dinl) : 0;
+	*boole == 1 ? ft_printf("\n%s:\n", root->dinl) : 0;
 	*boole = 1;
 }
 
