@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:13:38 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 12:41:41 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ char	*ft_testflags(char ***av, int *ac)
 		i[1] = 1;
 		while (s[i[0]][0] == '-' && s[i[0]][1] != '-' && s[i[0]][i[1]])
 			flag = ft_test(flag, s[i[0]][i[1]++]);
+		if (s[i[0]][0] == '-' && s[i[0]][1] == '-')
+			ft_illegal(s[i[0]][1]);
 		if (!s[i[0]] || *s[i[0]] != '-' || !ft_strcmp(s[i[0]], "--"))
 		{
-			flag[0] ? *av = *av + i[0] : 0;
+			flag && flag[0] ? *av = *av + i[0] : 0;
 			return (flag);
 		}
 		*ac -= 1;

@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 10:46:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:46:29 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 13:11:14 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 t_nl	*ft_testfc(t_nl **ls, int *boole)
 {
-	perror(ls[3]->dinl);
+	char *tmp;
+
+	tmp = ft_strjoin("ft_ls: ", ls[3]->dinl);
+	perror(tmp);
 	free(ls[3]->dinl);
+	free(tmp);
 	if (ls[1] == NULL)
 		ls[0] = ls[3]->next;
 	else

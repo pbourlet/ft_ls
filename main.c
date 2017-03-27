@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:18:14 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/27 13:18:41 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int		main(int ac, char **av)
 	l = ft_testarg(flag, ft_sort(flag, ft_initls(flag, ac, av)));
 	ft_begin(flag, l, &boole);
 	free(flag);
-	return (1);
+	return (0);
 }
