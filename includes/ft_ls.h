@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 13:28:15 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/28 18:07:16 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "../libft/includes/libft.h"
 
 # define FORMAT_SIZE 6
+
 
 typedef	struct		s_nl
 {

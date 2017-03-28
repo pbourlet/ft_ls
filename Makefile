@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/28 16:23:23 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/28 18:51:04 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -60,16 +60,16 @@ $(NAME): $(OBJ)
 
 clean:
 	@make -C libft/ clean
-	@echo "\033[34;01m===== \c"
+	@echo "\033[31m===== \c"
 	@echo "\033[0m\033[32;01mDIR CLEAN\c"
-	@echo "\033[0m\033[34;01m =====\033[0m"
+	@echo "\033[0m\033[31m =====\033[0m"
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf libft/libft.a
-	@echo "\033[34;01m===== \c"
+	@echo "\033[31m===== \c"
 	@echo "\033[0m\033[32;01mFT_LS CLEAN\c"
-	@echo "\033[0m\033[34;01m =====\033[0m"
+	@echo "\033[0m\033[31m =====\033[0m"
 	@rm -rf $(NAME)
 
 re: fclean all
