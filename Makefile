@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/27 10:50:07 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/28 16:23:23 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -54,17 +54,22 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft/
 	@gcc -o $(NAME) $(OBJ) $(LIB)
+	@echo "\033[34;01m===== \c"
+	@echo "\033[32;01mEXE CREATED\c"
+	@echo "\033[0m\033[34;01m =====\033[0m"
 
 clean:
 	@make -C libft/ clean
-	@echo "\033[31mclean ft_ls\c"
-	@echo "\033[0m"
-	@rm -rf $(OBJ) $(OBJF) $(OBJG)
+	@echo "\033[34;01m===== \c"
+	@echo "\033[0m\033[32;01mDIR CLEAN\c"
+	@echo "\033[0m\033[34;01m =====\033[0m"
+	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf libft/libft.a
-	@echo "\033[31mfull clean\c"
-	@echo "\033[0m"
+	@echo "\033[34;01m===== \c"
+	@echo "\033[0m\033[32;01mFT_LS CLEAN\c"
+	@echo "\033[0m\033[34;01m =====\033[0m"
 	@rm -rf $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/01 20:18:21 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/28 16:18:55 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -113,27 +113,21 @@ all: $(NAME)
 
 %.o: %.c
 	@gcc -c -Wall -Wextra -Werror -o $@ -c $< -I./includes
-	@echo "\033[34;01m\xE2\x97\x89 \c"
-	@echo "\033[37;01m$<\c"
-	@echo "\033[32;01m ✓"
-	@echo "\033[0m\c"
 
 $(NAME): $(OBJ) $(OBJF) $(OBJG)
 	@ar rc $(NAME) $(OBJ) $(OBJF) $(OBJG)
 	@ranlib $(NAME)
+	@echo "\033[34;01m===== \c"
+	@echo "\033[32;01mLIB CREATED\c"
+	@echo "\033[0m\033[34;01m ====="
 
 clean:
-	@echo "\033[34;01m\xE2\x97\x89 \c"
-	@echo "\033[31;01mclean\c"
-	@echo "\033[32;01m ✓"
-	@echo "\033[0m\c"
+	@echo "\033[31m===== \c"
+	@echo "\033[32;01mLIB CLEAN\c"
+	@echo "\033[0m\033[31m =====\033[0m"
 	@rm -rf $(OBJ) $(OBJF) $(OBJG)
 
 fclean: clean
-	@echo "\033[34;01m\xE2\x97\x89 \c"
-	@echo "\033[31;01mfull clean\c"
-	@echo "\033[32;01m ✓"
-	@echo "\033[0m\c"
 	@rm -rf $(NAME)
 
 re: fclean all
