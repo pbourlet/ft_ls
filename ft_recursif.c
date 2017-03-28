@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 16:18:59 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 13:27:52 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/28 15:38:27 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	ft_recursif(char *flag, t_nl *root, int *boole)
 		{
 			if (ft_strchr(flag, 'a') || entry->d_name[0] != '.')
 				fich[1] = ft_add(flag, fich[1], path, entry);
-			if (ft_strchr(flag, 'R') && ft_testdir(entry, path))
+			if ((ft_strchr(flag, 'a') || entry->d_name[0] != '.') &&
+			ft_strchr(flag, 'R') && ft_testdir(entry, path))
 				fich[0] = ft_add(flag, fich[0], path, entry);
 		}
 		closedir(dp);
