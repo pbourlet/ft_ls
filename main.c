@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 11:53:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/28 18:09:34 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/30 12:57:34 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,26 @@ void	ft_begin(char *flag, t_nl *l, int *boole)
 		free(l);
 		l = l->next;
 	}
+}
+
+char	**ft_sorttab(char **tab)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+		{
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+			i = -1;
+		}
+		i++;
+	}
+	return (tab);
 }
 
 int		main(int ac, char **av)
@@ -44,6 +64,7 @@ int		main(int ac, char **av)
 			*av = ".";
 		}
 	}
+	av = ft_sorttab(av);
 	l = ft_testarg(flag, &boole, ft_sort(flag, ft_initls(flag, ac, av)));
 	ft_begin(flag, l, &boole);
 	free(flag);

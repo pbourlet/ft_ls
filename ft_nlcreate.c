@@ -6,11 +6,23 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/28 15:17:52 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/30 12:57:36 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_ls.h"
+
+int			ft_teststat(char *flag, char *str, char *complet, t_nl *new)
+{
+	if (ft_strcmp(str, ""))
+	{
+		if (ft_strchr(flag, '0') && stat(complet, &new->statis) <0)
+			return (0);
+		if (lstat(complet, &new->statis) < 0)
+			return (0);
+	}
+	return (1);
+}
 
 t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 {
@@ -23,10 +35,13 @@ t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 		complet = ft_strjoin(path, str);
 	else
 		complet = ft_strdup(str);
-	if (ft_strcmp(str, ""))
+	if (!ft_teststat(flag, str, complet, new))
 	{
-		ft_strchr(flag, '0') ? stat(complet, &new->statis) :
-		lstat(complet, &new->statis);
+		ft_putstr("ft_ls: ");
+		perror((ft_strchr(complet, '/') ? ft_strrchr(complet, '/') + 1 :
+					complet));
+		free(complet);
+		return (NULL);
 	}
 	if (!(new->dinl = ft_strdup(complet)))
 	{
