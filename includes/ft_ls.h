@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/28 18:07:16 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/03/30 13:00:25 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_nl				*ft_joinls(char *flag, t_nl *root, char *path, char *av);
 t_nl				*ft_nlcreate(char *flag, char *path, char *str);
 t_nl				*ft_sort(char *flag, t_nl *str);
 t_nl				*ft_testarg(char *flag, int *boole, t_nl *list);
-t_nl				*ft_isdir(t_nl *list);
 t_nl				*ft_isfile(char *flag, t_nl *list);
 
 #endif

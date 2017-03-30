@@ -6,7 +6,7 @@
 #*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/06 21:39:23 by pbourlet          #+#    #+#             *#
-#*   Updated: 2017/03/28 18:51:04 by pbourlet         ###   ########.fr       *#
+#*   Updated: 2017/03/30 13:00:33 by pbourlet         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -23,7 +23,6 @@ LS	=	\
 		ft_strjoinf.c \
 		ft_sort.c \
 		ft_printls.c \
-		ft_isdir.c \
 		ft_isfile.c \
 		ft_printlen.c \
 		ft_printall.c \
