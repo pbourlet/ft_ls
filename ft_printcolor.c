@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 18:33:07 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 12:49:28 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 14:31:41 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	ft_printcolor(t_nl *root)
 {
-	if (S_ISDIR(root->statis.st_mode) && S_IRUSR & root->statis.st_mode &&
+	if ((S_ISVTX & root->statis.st_mode) && (S_IXOTH & root->statis.st_mode) &&
+	S_IWOTH & root->statis.st_mode)
+		ft_putstr("\033[42m\033[30m");
+	else if (S_ISDIR(root->statis.st_mode) && S_IRUSR & root->statis.st_mode &&
 	S_IWUSR & root->statis.st_mode && S_IXUSR & root->statis.st_mode &&
 	S_IRGRP & root->statis.st_mode && S_IWGRP & root->statis.st_mode &&
 	S_IXGRP & root->statis.st_mode && S_IROTH & root->statis.st_mode &&
@@ -30,6 +33,8 @@ void	ft_printcolor(t_nl *root)
 		ft_putstr("\033[35m");
 	else if (S_ISFIFO(root->statis.st_mode))
 		ft_putstr("\033[33m");
+	else if (S_ISSOCK(root->statis.st_mode))
+		ft_putstr("\033[36m");
 	else if (S_IXOTH & root->statis.st_mode || S_IXGRP & root->statis.st_mode
 	|| S_IXUSR & root->statis.st_mode)
 		ft_putstr("\033[31m");

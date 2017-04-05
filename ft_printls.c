@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 10:33:29 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/04/05 13:57:28 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 14:14:49 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_printls(char *flag, t_nl *res, char *path, int *len)
 			ft_putstr(res->dinl + (!ft_strcmp(path, "/") ? 1 :
 			ft_strlen(path)));
 		ft_strchr(flag, 'G') ? ft_putstr("\033[0m") : 0;
+		ft_strchr(flag, 'F') ? ft_printtag(res) : 0;
 		(ft_strchr(flag, 'l') || ft_strchr(flag, 'g')) &&
 		S_ISLNK(res->statis.st_mode) ? ft_printlnk(res) : 0;
 		ft_putchar('\n');

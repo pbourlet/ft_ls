@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/04/05 12:59:13 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 14:10:25 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void				ft_printtime(t_nl *ls);
 void				ft_recursif(char *flag, t_nl *root, int *boole);
 void				ft_error(char *str);
 void				ft_illegal(char c);
+void				ft_printtag(t_nl *root);
 
 char				*ft_testflags(char ***s, int *ac);
 char				*ft_strjoinf(char *dest, char *src);

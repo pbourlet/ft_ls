@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 12:56:13 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/28 15:25:14 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 14:32:29 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_illegal(char c)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", c);
-	ft_putendl("usage: ft_ls [-GRSadglrst] [file ...]");
+	ft_putendl("usage: ft_ls [-FGRSadglrst] [file ...]");
 	exit(1);
 }
 
@@ -25,7 +25,7 @@ char	*ft_test(char *flag, char c)
 
 	!flag ? flag = ft_strnew(0) : 0;
 	if (c == 'G' || c == 'R' || c == 'S' || c == 'a' || c == 'd' ||
-	c == 'g' || c == 'l' || c == 'r' || c == 's' || c == 't')
+	c == 'g' || c == 'l' || c == 'r' || c == 's' || c == 't' || c== 'F')
 	{
 		tmp = flag;
 		flag = ft_strcjoin(tmp, c);
