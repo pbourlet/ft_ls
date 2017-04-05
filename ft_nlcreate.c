@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/04/05 12:59:29 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 13:57:33 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,11 @@ t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 		free(complet);
 		return (NULL);
 	}
-	if (!(new->dinl = ft_strdup(complet)))
+	if (!(new->dinl = complet))
 	{
 		free(new);
 		return (NULL);
 	}
-	free(complet);
 	new->next = NULL;
 	return (new);
 }
