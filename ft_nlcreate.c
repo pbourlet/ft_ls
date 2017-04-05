@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:59:31 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/30 12:57:36 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 12:59:29 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			ft_teststat(char *flag, char *str, char *complet, t_nl *new)
 {
 	if (ft_strcmp(str, ""))
 	{
-		if (ft_strchr(flag, '0') && stat(complet, &new->statis) <0)
+		if (ft_strchr(flag, '0') && stat(complet, &new->statis) < 0)
 			return (0);
 		if (lstat(complet, &new->statis) < 0)
 			return (0);
@@ -49,7 +49,6 @@ t_nl		*ft_nlcreate(char *flag, char *path, char *str)
 		return (NULL);
 	}
 	free(complet);
-	new->dir = 0;
 	new->next = NULL;
 	return (new);
 }

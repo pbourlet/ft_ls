@@ -6,7 +6,7 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 16:05:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/30 13:00:25 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/04/05 12:59:13 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 typedef	struct		s_nl
 {
 	char			*dinl;
-	int				dir;
 	struct stat		statis;
 	struct s_nl		*next;
 }					t_nl;
