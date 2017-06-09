@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   printblks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/22 22:15:39 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 13:18:33 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/22 13:04:18 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:56:38 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void	ft_error(char *str)
+void	ft_printblks(struct stat st, int *len)
 {
-	char	*tmp;
-
-	tmp = ft_strjoin("ft_ls: ", str);
-	perror((ft_strchr(str, '/') ? ft_strrchr(str, '/') + 1 : str));
-	free(tmp);
+	ft_putlennbr(len[5], st.st_blocks);
+	ft_putchar(' ');
 }

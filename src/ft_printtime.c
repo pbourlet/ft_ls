@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_acl.c                                           :+:      :+:    :+:   */
+/*   ft_printtime.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 21:02:24 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:44:13 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/25 20:50:19 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:58:20 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void	ft_printacl(char *name)
+void	ft_printtime(t_nl *ls)
 {
-	acl_t acl;
+	time_t			curtime;
+	struct timeval	tv;
 
-	acl = acl_get_file(name, ACL_TYPE_EXTENDED);
-	if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
-		ft_putchar('@');
-	else if (acl)
-		ft_putchar('+');
+	gettimeofday(&tv, NULL);
+	curtime = tv.tv_sec;
+	if (curtime - ls->statis.st_mtime > 15770000 ||
+	curtime - ls->statis.st_mtime < -15770000)
+	{
+		ft_printf(" %.7s %.4s ", ctime(&ls->statis.st_mtime) + 4,
+		ctime(&ls->statis.st_mtime) + 20);
+	}
 	else
-		ft_putchar(' ');
-	acl_free((void*)acl);
+		ft_printf(" %.12s ", ctime(&ls->statis.st_mtime) + 4);
 }

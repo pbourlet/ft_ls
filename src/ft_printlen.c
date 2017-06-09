@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printlnk.c                                      :+:      :+:    :+:   */
+/*   ft_printlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/21 15:30:23 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 17:05:17 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/20 11:40:23 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:57:37 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void	ft_printlnk(t_nl *res)
+void	ft_putlenstr(int len, char *content)
 {
-	char	buff[512];
+	int i;
 
-	ft_memset(buff, 0, 512);
-	readlink(res->dinl, buff, 512);
-	ft_putstr(" -> ");
-	ft_putstr(buff);
+	i = content ? ft_strlen(content) : 0;
+	ft_putstr(content);
+	while (i++ < len)
+		ft_putchar(' ');
+}
+
+void	ft_putlennbr(int len, int content)
+{
+	int i;
+
+	i = ft_nblen(content);
+	while (i++ < len)
+		ft_putchar(' ');
+	ft_putnbr(content);
 }

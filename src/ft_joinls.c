@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:12:30 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:45:44 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:55:40 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 int		ft_level(char *dinl, char *complet)
 {

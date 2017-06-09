@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printtime.c                                     :+:      :+:    :+:   */
+/*   ft_printlnk.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/25 20:50:19 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:43:55 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/21 15:30:23 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:57:45 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void	ft_printtime(t_nl *ls)
+void	ft_printlnk(t_nl *res)
 {
-	time_t			curtime;
-	struct timeval	tv;
+	char	buff[512];
 
-	gettimeofday(&tv, NULL);
-	curtime = tv.tv_sec;
-	if (curtime - ls->statis.st_mtime > 15770000 ||
-	curtime - ls->statis.st_mtime < -15770000)
-	{
-		ft_printf(" %.7s %.4s ", ctime(&ls->statis.st_mtime) + 4,
-		ctime(&ls->statis.st_mtime) + 20);
-	}
-	else
-		ft_printf(" %.12s ", ctime(&ls->statis.st_mtime) + 4);
+	ft_memset(buff, 0, 512);
+	readlink(res->dinl, buff, 512);
+	ft_putstr(" -> ");
+	ft_putstr(buff);
 }

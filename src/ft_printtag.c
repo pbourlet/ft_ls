@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 14:04:32 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/04/05 15:52:11 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:58:11 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 void	ft_printtag(t_nl *root)
 {

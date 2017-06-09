@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 14:52:21 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 15:00:13 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:55:52 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 int	ft_lssize(t_nl *ls)
 {

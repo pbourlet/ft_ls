@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:29:23 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 15:01:08 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:55:31 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 t_nl	*ft_testfile(t_nl **ls, int *len, char *flag)
 {

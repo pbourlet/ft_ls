@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printlen.c                                      :+:      :+:    :+:   */
+/*   ft_acl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 11:40:23 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 16:09:05 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/20 21:02:24 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:56:16 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-void	ft_putlenstr(int len, char *content)
+void	ft_printacl(char *name)
 {
-	int i;
+	acl_t acl;
 
-	i = content ? ft_strlen(content) : 0;
-	ft_putstr(content);
-	while (i++ < len)
+	acl = acl_get_file(name, ACL_TYPE_EXTENDED);
+	if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
+		ft_putchar('@');
+	else if (acl)
+		ft_putchar('+');
+	else
 		ft_putchar(' ');
-}
-
-void	ft_putlennbr(int len, int content)
-{
-	int i;
-
-	i = ft_nblen(content);
-	while (i++ < len)
-		ft_putchar(' ');
-	ft_putnbr(content);
+	acl_free((void*)acl);
 }

@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 11:39:22 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/25 16:07:09 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:56:26 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 void	ft_printall(char *flag, t_nl *res, char *path)
 {

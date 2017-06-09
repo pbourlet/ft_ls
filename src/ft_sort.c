@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 19:45:08 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/27 10:10:41 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:59:31 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 int		ft_sordre(char *flag, t_nl **ls)
 {

@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 16:18:59 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/28 15:38:27 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:58:29 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 t_nl	*ft_add(char *flag, t_nl *subdir, char *path, struct dirent *entry)
 {

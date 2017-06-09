@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 14:40:56 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/30 12:57:37 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:59:48 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 t_nl	*ft_testarg(char *flag, int *boole, t_nl *list)
 {

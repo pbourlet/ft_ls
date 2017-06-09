@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinf.c                                      :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/09 17:27:28 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/14 18:20:43 by pbourlet         ###   ########.fr       */
+/*   Created: 2017/03/22 22:15:39 by pbourlet          #+#    #+#             */
+/*   Updated: 2017/06/09 17:55:14 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
-char	*ft_strjoinf(char *dest, char *src)
+void	ft_error(char *str)
 {
-	char *tmp;
+	char	*tmp;
 
-	tmp = NULL;
-	if ((!dest && src) || (!src && dest))
-		return ((tmp = ft_strdup(!dest ? src : dest)));
-	if (dest)
-	{
-		tmp = dest;
-		dest = ft_strjoin(tmp, src);
-		ft_strclr(tmp);
-		free(tmp);
-	}
-	return (dest);
+	tmp = ft_strjoin("ft_ls: ", str);
+	perror((ft_strchr(str, '/') ? ft_strrchr(str, '/') + 1 : str));
+	free(tmp);
 }

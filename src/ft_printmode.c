@@ -6,11 +6,11 @@
 /*   By: pbourlet <pbourlet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 17:10:54 by pbourlet          #+#    #+#             */
-/*   Updated: 2017/03/20 21:04:07 by pbourlet         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:58:03 by pbourlet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_ls.h"
+#include "ft_ls.h"
 
 void	ft_printusr(struct stat st)
 {
